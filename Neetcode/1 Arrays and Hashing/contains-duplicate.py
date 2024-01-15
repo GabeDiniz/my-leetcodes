@@ -17,10 +17,14 @@ Output: false
 # Time Complexity: O(n)
 class Solution:
     def containsDuplicate(self, nums: list[int]) -> bool:
+        # Store duplicates
         dups = []
 
+        # Iterate through list of nums
         for num in nums:
+            # If the num is already in dups -> a duplicate exists -> return True
             if num in dups:
                 return True
+            # Append the num to the dups list
             dups.append(num)
         return False
