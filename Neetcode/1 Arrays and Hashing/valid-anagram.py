@@ -16,6 +16,7 @@ Input: s = "rat", t = "car"
 Output: false
 '''
 
+# Time Complexity: O(n)
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         # If the lengths don't match -> not an anagram -> return False
