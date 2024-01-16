@@ -14,9 +14,11 @@ Input: nums = [1,2,3,4]
 Output: false
 '''
 
-# Time Complexity: O(n)
 class Solution:
     def containsDuplicate(self, nums: list[int]) -> bool:
+        # First Solution
+        # Time Complexity: O(n)
+        '''
         # Store duplicates
         dups = []
 
@@ -27,4 +29,14 @@ class Solution:
                 return True
             # Append the num to the dups list
             dups.append(num)
+        return False
+        '''
+        # Improved solution
+        # Time Complexity: O(1) 
+        dupSet = set()
+
+        for num in nums:
+            if num in dupSet:
+                return True
+            dupSet.add(num)
         return False
