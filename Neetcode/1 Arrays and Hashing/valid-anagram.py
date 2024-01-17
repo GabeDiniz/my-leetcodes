@@ -19,15 +19,8 @@ Output: false
 # Time Complexity: O(n)
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        # If the lengths don't match -> not an anagram -> return False
-        if len(s) != len(t):
-            return False
-
-        # For each character in s, remove that character from t
-        for char in s:
-            if char in t:
-                t.replace(char, "")
-            # If the corresponding character in s is NOT in t -> return False
-            else: 
-                return False
-        return True
+        # Sort both strings. If they are the same they are a
+        #   valid anagram. 
+        sort_s = sorted(s)
+        sort_t = sorted(t)
+        return sort_s == sort_t
