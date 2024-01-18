@@ -30,9 +30,6 @@ Output:
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         # Format the string
-        s = s.replace(" ", "").lower()
-        s = ''.join(letter for letter in s if letter.isalnum())
+        s = ''.join(letter.lower() for letter in s if letter.isalnum())
         # Check if its the same (forwards == backwards)
-        if s == s[::-1]: 
-            return True
-        return False
+        return s == s[::-1]
