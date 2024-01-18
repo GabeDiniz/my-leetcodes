@@ -23,7 +23,15 @@ from collections import defaultdict
 
 class Solution:
     def containsNearbyDuplicate(self, nums: list[int], k: int) -> bool:
-        
+        # Solution 3: Best solution
+        # Time Complexity: O(n) slightly faster than solution 2
+        hashMap = {}    # {num: index, 1: 0, 5: 1, 10: 2}
+        for i, num in enumerate(nums):
+            if num in hashMap and i - hashMap[num] <= k: 
+                return True
+            hashMap[num] = i
+        return False
+
         # Solution 2: 
         # Time Complexity: O(n)
         hashMap = defaultdict(int)
