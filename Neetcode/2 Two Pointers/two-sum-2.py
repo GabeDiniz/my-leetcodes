@@ -30,3 +30,21 @@ Input: numbers = [-1,0], target = -1
 Output: [1,2]
 Explanation: The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2. We return [1, 2].
 '''
+
+# Time Complexity: O(n)
+class Solution:
+    def twoSum(self, numbers: list[int], target: int) -> list[int]:
+        # Setup two pointers (one at the beginning and end of the list)
+        i, j = 0, len(numbers) - 1
+        
+        # Since the list is ordered, we know that if the total or list[i] + list[j]
+        #   is greater than the target -> we need to move the right pointer to the left
+        #   if the total is less than the target -> move the left pointer to the right
+        while i <= j:
+            total = numbers[i] + numbers[j]
+            if total == target:
+                return [i + 1, j + 1]
+            elif total > target:
+                j -= 1
+            else: 
+                i += 1
