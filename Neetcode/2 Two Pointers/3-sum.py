@@ -28,48 +28,49 @@ Output: [[0,0,0]]
 Explanation: The only possible triplet sums up to 0.
 '''
 
+# Time Complexity: O(n^2)
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        result = set()
+      result = set()
 
-        # 1: Split the numbers into positives, negatives, and zeros
-        negatives, zeros, positives = [], [], []
-        for num in nums:
-            if num < 0:
-                negatives.append(num)
-            elif num > 0:
-                positives.append(num)
-            else:
-                zeros.append(num)
-        
-        # 2: Create a set for negatives and positives to setup O(1) look-up times
-        NEGATIVES, POSITIVES = set(negatives), set(positives)
+      # 1: Split the numbers into positives, negatives, and zeros
+      negatives, zeros, positives = [], [], []
+      for num in nums:
+        if num < 0:
+          negatives.append(num)
+        elif num > 0:
+          positives.append(num)
+        else:
+          zeros.append(num)
+      
+      # 2: Create a set for negatives and positives to setup O(1) look-up times
+      NEGATIVES, POSITIVES = set(negatives), set(positives)
 
-        # Handle 0s cases
-        # 3.1: If there is a 0 in the list, add all cases where -num, num exists in NEGATIVES, POSITIVES
-        #   i.e., (-3, 0, 3) = 0
-        if zeros:
-            for num in POSITIVES:
-                if -1 * num in NEGATIVES:   # Check if the (-) of num is in NEGATIVES
-                    result.add((-1 * num, 0, num))
-        # 3.2: If there are 3 zeros in the list, include (0, 0, 0)
-        if len(zeros) >= 3:
-            result.add((0, 0, 0))
-        
-        # 4: For all negative pairs, check for their positive compliment
-        #   i.e., (-5, -1) -> (6)
-        for i in range(len(negatives)):     # iterate through every pair
-            for j in range(i + 1, len(negatives)):
-                target = -1 * (negatives[i] + negatives[j])
-                if target in POSITIVES:
-                    # If it exists -> add triple -> [-5, -1, 6]
-                    result.add(tuple(sorted([negatives[i], negatives[j], target]))) 
+      # Handle 0s cases
+      # 3.1: If there is a 0 in the list, add all cases where -num, num exists in NEGATIVES, POSITIVES
+      #   i.e., (-3, 0, 3) = 0
+      if zeros:
+        for num in POSITIVES:
+          if -1 * num in NEGATIVES:   # Check if the (-) of num is in NEGATIVES
+            result.add((-1 * num, 0, num))
+      # 3.2: If there are 3 zeros in the list, include (0, 0, 0)
+      if len(zeros) >= 3:
+        result.add((0, 0, 0))
+      
+      # 4: For all negative pairs, check for their positive compliment
+      #   i.e., (-5, -1) -> (6)
+      for i in range(len(negatives)):     # iterate through every pair
+        for j in range(i + 1, len(negatives)):
+          target = -1 * (negatives[i] + negatives[j])
+          if target in POSITIVES:
+            # If it exists -> add triple -> [-5, -1, 6]
+            result.add(tuple(sorted([negatives[i], negatives[j], target]))) 
 
-        # 5: Now, for all the positive pairs, check for the negative compliment
-        for i in range(len(positives)):
-            for j in range(i + 1, len(positives)):
-                target = -1 * (positives[i] + positives[j])
-                if target in NEGATIVES:
-                    result.add(tuple(sorted([positives[i], positives[j], target])))
+      # 5: Now, for all the positive pairs, check for the negative compliment
+      for i in range(len(positives)):
+        for j in range(i + 1, len(positives)):
+          target = -1 * (positives[i] + positives[j])
+          if target in NEGATIVES:
+            result.add(tuple(sorted([positives[i], positives[j], target])))
 
-        return result
+      return result
