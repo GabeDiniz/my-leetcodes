@@ -30,7 +30,7 @@ Explanation: The only possible triplet sums up to 0.
 
 # Time Complexity: O(n^2)
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
       result = set()
 
       # 1: Split the numbers into positives, negatives, and zeros
