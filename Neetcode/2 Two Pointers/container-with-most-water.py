@@ -29,7 +29,22 @@ Output: 1
 
 class Solution:
     def maxArea(self, height: list[int]) -> int:
-        
+        # Time Complexity: O(n)
+        # Init left/right/answer
+        left, right, answer = 0, len(height) - 1, 0
+
+        # Iterate through list until left and right pointer crosses
+        while left < right:
+            area = min(height[left], height[right]) * (right - left)
+            answer = max(answer, area)
+
+            # Move the shorter pointer inward (i.e., if height of left is 2 and height of right is
+            #   5 -> Move left pointer inward)
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return answer
 
         # Solution 1: O(n^2) - TOO SLOW
         max = 0
