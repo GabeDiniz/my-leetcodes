@@ -37,29 +37,28 @@ Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 '''
 
 class Solution:
-    def evalRPN(self, tokens: list[str]) -> int:
-        # Time Complexity: O(n)
-        stack = []
-        operators = "+-*/"
+  def evalRPN(self, tokens: list[str]) -> int:
+    # Time Complexity: O(n)
+    stack = []
+    operators = "+-*/"
 
-        # Loop through each token, adding and removing from the stack 
-        #   accordingly. At the end of the loop, the 1 number left in 
-        #   the stack is the answer
-        for token in tokens:
-            # When token is an operator -> pop out the last 2 items in the stack
-            #   and handle the case according to operator
-            if token in operators:
-                val1 = stack.pop()
-                val2 = stack.pop()
-                if token == "+":
-                    stack.append(val1 + val2)
-                elif token == "-":
-                    stack.append(val2 - val1)
-                elif token == "*":
-                    stack.append(val1 * val2)
-                elif token == "/":
-                    stack.append(int(val2 / val1))
-            # Otherwise token is an integer -> add int to the stack
-            else:
-                stack.append(int(token))
-        return stack.pop()
+    # Loop through each token, adding and removing from the stack 
+    #   accordingly. At the end of the loop, the 1 number left in 
+    #   the stack is the answer
+    for token in tokens:
+      # When token is an operator -> pop out the last 2 items in the stack
+      #   and handle the case according to operator
+      if token in operators:
+        val1, val2 = stack.pop(), stack.pop()
+        if token == "+":
+          stack.append(val1 + val2)
+        elif token == "-":
+          stack.append(val2 - val1)
+        elif token == "*":
+          stack.append(val1 * val2)
+        elif token == "/":
+          stack.append(int(val2 / val1))
+      # Otherwise token is an integer -> add int to the stack
+      else:
+        stack.append(int(token))
+    return stack.pop()
