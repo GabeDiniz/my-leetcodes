@@ -25,10 +25,20 @@ from collections import defaultdict
 # Time Complexity O(n)
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-        hashMap = {}    # Example: {"aet": ["eat", "ate"], "ant": [], "abt": []}
+        # Better Way:
+        hashMap = defaultdict(list)
+        for word in strs:
+            # Sort word by characters (i.e., ["a", "e", "t"] then join them to make the key)
+            sorted_word = ''.join(sorted(word))
+            # Add them to that dictionary key-value pair
+            hashMap[sorted_word].append(word)
         
+        # Return the list of values which hold the list of anagrams
+        return list(hashMap.values())
+    
         # First solution: 
         '''
+        hashMap = {}    # Example: {"aet": ["eat", "ate"], "ant": [], "abt": []}
         for word in strs:
             # Sort characters:
             curr = ''.join(sorted(word))
@@ -41,14 +51,3 @@ class Solution:
                 hashMap[curr] = [word]
         '''
         
-        hashMap = defaultdict(list)
-
-        # Better Way:
-        for word in strs:
-            # Sort word by characters (i.e., ["a", "e", "t"] then join them to make the key)
-            sorted_word = ''.join(sorted(word))
-            # Add them to that dictionary key-value pair
-            hashMap[sorted_word].append(word)
-        
-        # Return the list of values which hold the list of anagrams
-        return list(hashMap.values())
