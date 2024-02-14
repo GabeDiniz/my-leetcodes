@@ -34,7 +34,21 @@ So nums is rearranged to [1,-1].
 
 class Solution:
   def rearrangeArray(self, nums: list[int]) -> list[int]:
-    # First solution...
+    # Second solution
+    # Time Complexity: O(n)
+    # Space Complexity: O(n) to store answer
+    pi, ni, answer = 0, 1, [0]*len(nums)
+    for num in nums:
+      if num > 0:   # Positive num
+        answer[pi] = num
+        pi += 2
+      else:   # Negative num
+        answer[ni] = num
+        ni += 2
+
+    return answer
+  
+    # First solution
     # Time Complexity: O(n)
     # Space Complexity: O(n) to store negatives and positives
     pos, neg = [], []
