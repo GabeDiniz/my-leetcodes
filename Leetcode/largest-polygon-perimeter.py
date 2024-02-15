@@ -38,19 +38,21 @@ Explanation: There is no possible way to form a polygon from nums, as a polygon 
 '''
 
 class Solution:
-    def largestPerimeter(self, nums: list[int]) -> int:
-        # Sort the array
-        nums.sort()    # O(nlogn)
-        
-        # Step through nums backwards
-        for i in range(len(nums), 2, -1):
-           # Check if the sum of the numbers before current are greater
-           #    -> If they are, we can return the sum up to current
-           #    -> Otherwise, we move further down the sorted list
-           # Example: [1, 1, 2, 3, 5, 12]
-           #    If current is 12 -> sum before is 12 -> 12 is not < 12 -> Continue
-           #    Current is 5 -> sum before 5 is 7 -> 5 < 7 -> Return sum up to 5 -> return 12 (1 + 1 + 2 + 3 + 5) 
-            if sum(nums[:i - 1]) > nums[i - 1]:
-                return sum(nums[:i])
+  def largestPerimeter(self, nums: list[int]) -> int:
+    # Time Complexity: O(nlogn)
+    # Space Complexity: O(1)
+    # Sort the array
+    nums.sort()    # O(nlogn)
+    
+    # Step through nums backwards
+    for i in range(len(nums), 2, -1):
+      # Check if the sum of the numbers before current are greater
+      #    -> If they are, we can return the sum up to current
+      #    -> Otherwise, we move further down the sorted list
+      # Example: [1, 1, 2, 3, 5, 12]
+      #    If current is 12 -> sum before is 12 -> 12 is not < 12 -> Continue
+      #    Current is 5 -> sum before 5 is 7 -> 5 < 7 -> Return sum up to 5 -> return 12 (1 + 1 + 2 + 3 + 5) 
+      if sum(nums[:i - 1]) > nums[i - 1]:
+        return sum(nums[:i])
 
-        return -1
+    return -1
