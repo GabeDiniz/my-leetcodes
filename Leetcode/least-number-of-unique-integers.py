@@ -18,7 +18,10 @@ Explanation: Remove 4, 2 and either one of the two 1s or three 3s. 1 and 3 will 
 from collections import Counter
 
 class Solution:
-  def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
+  def findLeastNumOfUniqueInts(self, arr: list[int], k: int) -> int:
+    # Time Complexity: O(nlogn)
+    # Space Complexity: O(n)
+    
     # Map the frequency
     frequency = Counter(arr)
     # Sort the frequency as a num-frequency set (i.e., [(3, 2), (2, 4), ...] )
