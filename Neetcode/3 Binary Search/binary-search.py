@@ -18,3 +18,23 @@ Output: -1
 Explanation: 2 does not exist in nums so return -1
 '''
 
+class Solution:
+  def search(self, nums: list[int], target: int) -> int:
+    # Time Complexity: O(log n)
+
+    # Init left and right index values
+    left, right = 0, len(nums)-1
+
+    while left <= right:
+      # Retrieve the middle point index
+      middle = (left + right) // 2
+      # If the middle number is < target -> move left pointer
+      if nums[middle] < target:
+        left = middle + 1
+      # If the middle number is > target -> move right pointer
+      elif nums[middle] > target:
+        right = middle - 1
+      # Otherwise, the target was found -> return middle
+      else: 
+        return middle
+    return -1
