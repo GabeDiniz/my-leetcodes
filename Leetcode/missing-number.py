@@ -22,3 +22,22 @@ Output: 8
 Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0,9]. 8 is the missing number in the range since it does not appear in nums.
 '''
 
+class Solution:
+  def missingNumber(self, nums: list[int]) -> int:
+    # Time Complexity: O(n)
+    # Space-Complexity: O(1)
+
+    # The idea: get the expected sum of the list and the actual sum of the list
+    #   then find the difference which returns the answer. This allows us to 
+    #   solve the problem in O(n) time and O(1) space.
+    expected = 0
+    n_expected = 1
+    actual = 0
+
+    for i in range(len(nums)):
+      # This is the number that is expected if every number was present
+      expected += n_expected
+      n_expected += 1
+      # This is the sum of the numbers in the array
+      actual += nums[i]
+    return expected - actual
