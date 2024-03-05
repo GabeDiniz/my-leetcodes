@@ -37,3 +37,22 @@ Constraints:
 1 <= s.length <= 105
 s only consists of characters 'a', 'b', and 'c'.
 '''
+
+class Solution:
+  def minimumLength(self, s: str) -> int:
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    
+    # Initialize left and right
+    left, right = 0, len(s) - 1
+
+    while left < right and s[left] == s[right]:
+      # Retrieve current char
+      current = s[left]
+      # Iterate through left and right if it equals current char 
+      while left <= right and s[left] == current:
+        left += 1
+      while left <= right and s[right] == current:
+        right -= 1
+
+    return 1 + right - left
