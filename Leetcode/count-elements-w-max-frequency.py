@@ -22,6 +22,24 @@ Output: 5
 Explanation: All elements of the array have a frequency of 1 which is the 
   maximum. So the number of elements in the array with maximum frequency is 5.
 '''
+from collections import defaultdict
 
 class Solution:
     def maxFrequencyElements(self, nums: list[int]) -> int:
+      # Time Complexity: O(n)
+      hashMap = defaultdict(int)
+
+      # Calculate frequency of each number
+      for num in nums:
+        hashMap[num] += 1
+
+      # Retrieve the maximum frequency number
+      max_val = max(hashMap.values())
+      result = 0
+      # Iterate through the total frequencies of the elements and
+      #   calculate the sum of the numbers that have the max frequency
+      for num in hashMap.values():
+        if num == max_val:
+          result += num
+
+      return result
