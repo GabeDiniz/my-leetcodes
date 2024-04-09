@@ -31,3 +31,16 @@ Explanation:
 - In the next 4 passes, only the person in position 0 is buying tickets.
 The person at position 0 has successfully bought 5 tickets and it took 4 + 1 + 1 + 1 + 1 = 8 seconds.
 '''
+
+class Solution:
+    def timeRequiredToBuy(self, tickets: list[int], k: int) -> int:
+        # Solution 1: TOO SLOW
+        seconds = 0
+        while tickets[k] != 0:
+
+            for i, num in enumerate(tickets):
+                if num > 0:
+                    seconds += 1
+                    tickets[i] = tickets[i] - 1
+                if tickets[k] == 0:
+                    return seconds
