@@ -12,6 +12,11 @@ class Solution:
     # Time Complexity: O(m + n)
     # Space Complexity: O(1)
 
+    # Speed up solution with a base case
+    if m == 0:
+      nums1[:] = nums2[:]  # Assign directly if nums1 is empty
+      return
+    
     # Initialize values where...
     # i = right index of nums1
     # j = right index of nums2
