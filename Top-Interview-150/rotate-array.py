@@ -9,6 +9,9 @@ class Solution:
     """
     Do not return anything, modify nums in-place instead.
     """
+    # Time complexity: O(n)
+    # Space complexity: O(n)
+    
     # Use a hashMap to store the index:num pair
     hashMap = {}
     # Parse through nums, adding k to the current index.
